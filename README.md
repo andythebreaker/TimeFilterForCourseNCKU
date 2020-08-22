@@ -12,6 +12,9 @@ NCKU Course Time Filter Extension
 > 也可以在電腦版 Chrome 瀏覽器網址列上輸入 chrome://extensions/，然後按一下 Enter 鍵。
 2. 進入 Chrome 瀏覽器的 [擴充功能] 設定頁，並確認勾選 [開發人員模式]。
 3. 按一下 [載入未封裝擴充功能]，接下來請瀏覽至放置擴充功能的資料夾，然後按一下 [確定] 即可完成擴充功能的手動安裝程序。
+
+ref:https://www.alexclassroom.com/internet/google/google-chrome/how-to-manually-install-chrome-extension/
+
 ## How To Use
 0. (首次使用)按下chrome右上角的拼圖icon，點擊TimeFilterForCourseNCKU右側的圖釘標示
 1. 開啟「成大」選課頁面
