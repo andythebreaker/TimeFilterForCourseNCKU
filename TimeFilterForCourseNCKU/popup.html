@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>NCKU Course Time Filter Extension</title>
+    <meta charset="utf8">
+</head>
+
+<body>
+    <h2 id="htwo">NCKU Course Time Filter Extension</h2>
+    <button id="press">MAGIC!</button>
+    <p id=ptime style="display:none">
+        11:s;12:s;13:s;14:s;15:s;16:s;17:s;18:s;21:s;22:s;23:s;24:s;25:s;26:s;27:s;28:s;31:s;32:s;33:s;34:s;35:s;36:s;37:s;38:s;41:s;42:s;43:s;44:s;45:s;46:s;47:s;48:s;51:s;52:s;53:s;54:s;55:s;56:s;57:s;58:s;
+    </p>
+    <table class="timeChart">
+        <!--數字是全形的-->
+        <thead>
+            <tr class="one2five inChart">
+                <td class="weekDay"><button class="textOnly cellAll" id="pink">重</button></td>
+                <td class="weekDay"><button class="textOnly cellAll">一</button></td>
+                <td class="weekDay"><button class="textOnly cellAll">二</button></td>
+                <td class="weekDay"><button class="textOnly cellAll">三</button></td>
+                <td class="weekDay"><button class="textOnly cellAll">四</button></td>
+                <td class="weekDay"><button class="textOnly cellAll">五</button></td>
+            </tr>
+        </thead>
+        <tbody id="tableBlank">
+
+        </tbody>
+        <!--<tr class="lesson inChart" id="l01">
+            <td class="weekDay"><button class="mon cellAll" id="l_1">１</button></td>
+            <td class="weekDay"><button class="mon cellAll" id="l11">ㄨ</button></td>
+            <td class="weekDay"><button class="mon cellAll" id="l21">ㄨ</button></td>
+            <td class="weekDay"><button class="mon cellAll" id="l31">ㄨ</button></td>
+            <td class="weekDay"><button class="mon cellAll" id="l41">ㄨ</button></td>
+            <td class="weekDay"><button class="mon cellAll" id="l51">ㄨ</button></td>
+        </tr>-->
+    </table>
+    <div class="settingBtonS">
+        <div class="hideLogicS">
+            <p id="sendSetLogic" style="display:none">ud:1;md:1;</p>
+            <table id="hideLogicV1">
+                <tbody>
+                    <tr>
+                        <td><button id="SHOWudf">「時間未定義的課程」及「密集課程」</button>
+                            <b id="SATudf">ON</b>
+                        </td>
+                        <td><button id="SHOWmid">「中午的課程」及「A~E節的課程」</button>
+                            <b id="SATmid">ON</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+    <script src="bton_event.js"></script>
+    <style>
+        .textOnly {
+            background-color: darksalmon;
+            border-color: orange;
+        }
+
+        #pink {
+            background-color: pink;
+            border-color: deeppink;
+        }
+
+        #l_0 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_1 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_2 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_3 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_4 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_5 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_6 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_7 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+
+        #l_8 {
+            background-color: rgb(20, 224, 173);
+            border-color: rgb(14, 141, 109);
+        }
+    </style>
+</body>
+
+</html>
