@@ -1,3 +1,20 @@
+function download(data, filename, type) {
+    var file = new Blob([data], { type: type });
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+            url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+    }
+}
 var motherTime = document.getElementById("ExtensionTimeString").innerText.replace(/\s+/g, '').replace(/\r?\n|\r/g, '');
 console.log("magic~~~~~");
 var tbl = document.getElementsByTagName("table");
@@ -25,7 +42,7 @@ for (let index = 0; index < totalTR; index++) {
                 //console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
                 var lengthOfClass = parseInt(tmEd, 10) - parseInt(tmSt, 10) + 1;
                 for (let goTHRlengthCLS = 0; goTHRlengthCLS < lengthOfClass; goTHRlengthCLS++) {
-                    var currentJS=parseInt(tmSt, 10)+goTHRlengthCLS;
+                    var currentJS = parseInt(tmSt, 10) + goTHRlengthCLS;
                     //console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+currentJS.toString());
                     var mainDAT = document.getElementById('ExtensionTimeString').innerText.substring(document.getElementById('ExtensionTimeString').innerText.search(weekInt + currentJS.toString()) + 3, document.getElementById('ExtensionTimeString').innerText.search(weekInt + currentJS.toString()) + 4);
                     if (mainDAT === "x") {
@@ -35,10 +52,10 @@ for (let index = 0; index < totalTR; index++) {
                     }
                 }
             } else if ((headALFB === 1) && (endALFB !== 1)) {//headALPH
-                if(tmSt==="N"){//start from 5
+                if (tmSt === "N") {//start from 5
                     var lengthOfClass = parseInt(tmEd, 10) - 5 + 1;
                     for (let goTHRlengthCLS = 0; goTHRlengthCLS < lengthOfClass; goTHRlengthCLS++) {
-                        var currentJS=parseInt(tmSt, 10)+goTHRlengthCLS;
+                        var currentJS = parseInt(tmSt, 10) + goTHRlengthCLS;
                         var mainDAT = document.getElementById('ExtensionTimeString').innerText.substring(document.getElementById('ExtensionTimeString').innerText.search(weekInt + currentJS.toString()) + 3, document.getElementById('ExtensionTimeString').innerText.search(weekInt + currentJS.toString()) + 4);
                         if (mainDAT === "x") {
                             toy[index].style.display = "none";
@@ -46,7 +63,7 @@ for (let index = 0; index < totalTR; index++) {
                             toy[index].style.display = "table-row";
                         }
                     }
-                }else{
+                } else {
                     if (tmSt.search(/[0-9]/g) === -1) {//mid(RE)...no ckeck case 9958
                         var midset = document.getElementById('ExtensionSetting').innerText.substring(document.getElementById('ExtensionSetting').innerText.search("md") + 3, document.getElementById('ExtensionSetting').innerText.search("md") + 4);
                         if (midset === "0") {
@@ -66,7 +83,7 @@ for (let index = 0; index < totalTR; index++) {
             } else if ((headALFB !== 1) && (endALFB === 1)) {//endALPH
                 var lengthOfClass = 8 - parseInt(tmSt, 10) + 1;
                 for (let goTHRlengthCLS = 0; goTHRlengthCLS < lengthOfClass; goTHRlengthCLS++) {//end at 8
-                    var currentJS=parseInt(tmSt, 10)+goTHRlengthCLS;
+                    var currentJS = parseInt(tmSt, 10) + goTHRlengthCLS;
                     var mainDAT = document.getElementById('ExtensionTimeString').innerText.substring(document.getElementById('ExtensionTimeString').innerText.search(weekInt + currentJS.toString()) + 3, document.getElementById('ExtensionTimeString').innerText.search(weekInt + currentJS.toString()) + 4);
                     if (mainDAT === "x") {
                         toy[index].style.display = "none";
@@ -109,6 +126,21 @@ for (let index = 0; index < totalTR; index++) {
                 toy[index].style.display = "table-row";
             }
         }
+    }
+
+    var SHF = toy[index].getElementsByTagName("td")[5].innerText;
+    var regSHF = new RegExp('^[0-9]+$');
+    //var RSLTregSHF = SHF.match(SHF)[0];
+    for (let gothrough = 0; gothrough < SHF.length; gothrough++) {
+        if (SHF[gothrough].match(regSHF)) {
+            download(SHF[gothrough], 'debug', 'txt');
+            if (SHF[gothrough] !== "1") {
+                toy[index].style.display = "none";
+            } else {
+                toy[index].style.display = "table-row";
+            }
+        }
+
     }
 
 }

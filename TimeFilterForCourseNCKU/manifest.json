@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
-	"name": "TimeFilterForCourseNCKU",
-	"description": "NCKU Course Time Filter Extension",
-	"version": "2.2",
+	"name": "TimeFilterForCourseNCKU_V3",
+	"description": "NCKU Course Time Filter Extension (V3)",
+	"version": "3.0",
 	"browser_action": {
 		"default_icon": "icon.png",
 		"default_popup": "popup.html"
