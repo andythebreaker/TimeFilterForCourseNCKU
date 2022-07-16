@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "TimeFilterForCourseNCKU",
 	"description": "NCKU Course Time Filter Extension",
-	"version": "2.2",
+	"version": "2.3",
 	"browser_action": {
 		"default_icon": "icon.png",
 		"default_popup": "popup.html"
@@ -37,7 +37,6 @@
 		"power",
 		"printerProvider",
 		"privacy",
-		"proxy",
 		"sessions",
 		"storage",
 		"system.cpu",

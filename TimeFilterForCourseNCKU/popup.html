@@ -8,6 +8,7 @@
 
 <body>
     <h2 id="htwo">NCKU Course Time Filter Extension</h2>
+    <h5 id="ZZZZZZZ">顯示「口」的是你目前的空堂；顯示「ㄨ」的是你目前的已排課；</h2>
     <button id="press">MAGIC!</button>
     <p id=ptime style="display:none">
         11:s;12:s;13:s;14:s;15:s;16:s;17:s;18:s;21:s;22:s;23:s;24:s;25:s;26:s;27:s;28:s;31:s;32:s;33:s;34:s;35:s;36:s;37:s;38:s;41:s;42:s;43:s;44:s;45:s;46:s;47:s;48:s;51:s;52:s;53:s;54:s;55:s;56:s;57:s;58:s;
@@ -16,12 +17,12 @@
         <!--數字是全形的-->
         <thead>
             <tr class="one2five inChart">
-                <td class="weekDay"><button class="textOnly cellAll" id="pink">重</button></td>
-                <td class="weekDay"><button class="textOnly cellAll">一</button></td>
-                <td class="weekDay"><button class="textOnly cellAll">二</button></td>
-                <td class="weekDay"><button class="textOnly cellAll">三</button></td>
-                <td class="weekDay"><button class="textOnly cellAll">四</button></td>
-                <td class="weekDay"><button class="textOnly cellAll">五</button></td>
+                <td class="weekDay"><button class="textOnly cellAll" id="pink">全</button></td>
+                <td class="weekDay"><button class="textOnly cellAll cloumnBash" id="cloumnBash1">一</button></td>
+                <td class="weekDay"><button class="textOnly cellAll cloumnBash" id="cloumnBash2">二</button></td>
+                <td class="weekDay"><button class="textOnly cellAll cloumnBash" id="cloumnBash3">三</button></td>
+                <td class="weekDay"><button class="textOnly cellAll cloumnBash" id="cloumnBash4">四</button></td>
+                <td class="weekDay"><button class="textOnly cellAll cloumnBash" id="cloumnBash5">五</button></td>
             </tr>
         </thead>
         <tbody id="tableBlank">
@@ -56,6 +57,10 @@
     <script src="popup.js"></script>
     <script src="bton_event.js"></script>
     <style>
+        button {
+            border-radius: 10em;
+        }
+
         .textOnly {
             background-color: darksalmon;
             border-color: orange;

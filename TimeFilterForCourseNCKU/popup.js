@@ -14,8 +14,25 @@ function injectTheScript() {//init.!
 
 }
 function pinkF() {//on click rst
-    document.getElementById('pink').style.backgroundColor = "red";
-
+    if (document.getElementById('pink').style.backgroundColor === "red") {//sat = all X sel.
+        document.getElementById('pink').style.backgroundColor = "#ffc0cb";//mk all sel
+        var tmp_all_bton = document.querySelectorAll('button');
+        for (let index = 0; index < tmp_all_bton.length; index++) {
+            const element = tmp_all_bton[index];
+            if (element.innerText === "ㄨ") {
+                element.click();
+            }
+        }
+    } else {
+        document.getElementById('pink').style.backgroundColor = "red";//mk all X sel
+        var tmp_all_bton = document.querySelectorAll('button');
+        for (let index = 0; index < tmp_all_bton.length; index++) {
+            const element = tmp_all_bton[index];
+            if (element.innerText === "口") {
+                element.click();
+            }
+        }
+    }
 }
 /*function l11F() {
     var satus = document.getElementById('l11').style.backgroundColor;
@@ -61,29 +78,201 @@ for (let index = 0; index < 9; index++) {
 document.getElementById('tableBlank').innerHTML = m_pl;
 document.getElementById('pink').addEventListener('click', pinkF);
 //document.getElementById('l11').addEventListener('click', l11F);
+//<>節次批次</>
+var allBT = document.querySelectorAll('button');
+for (let index = 0; index < allBT.length; index++) {
+    const element = allBT[index];
+    if (plug0.includes(element.innerText)) {
+        element.addEventListener('click', (e) => {
+            var allBTz = document.querySelectorAll('button');
+            var preSELbton = [];
+            for (let indexz = 0; indexz < allBTz.length; indexz++) {
+                const elementz = allBTz[indexz];
+                //-------------------------//
+                const regex = /[a-zA-Z]([0-9])([0-9])/gm;
+
+                // Alternative syntax using RegExp constructor
+                // const regex = new RegExp('[a-zA-Z]([0-9])([0-9])', 'gm')
+
+                const str = elementz.id;//`l12`;
+                let m;
+
+                while ((m = regex.exec(str)) !== null) {
+                    // This is necessary to avoid infinite loops with zero-width matches
+                    if (m.index === regex.lastIndex) {
+                        regex.lastIndex++;
+                    }
+                    // The result can be accessed through the `m`-variable.
+                    m.forEach((match, groupIndex) => {
+                        console.log(`Found match, group ${groupIndex}: ${match}`);
+                        if (groupIndex === 2) {//節次
+                            if (Number(match) >= 0 && Number(match) < plug0.length) {//安全
+                                if (plug0[Number(match)] === e.target.innerText) {//篩選
+                                    preSELbton.push(elementz.id);
+                                }
+                            }
+                        }
+                    });
+                }
+                //-------------------------//
+            }
+            //document.getElementById('ZZZZZZZ').innerText = JSON.stringify(preSELbton);
+            var kou = 0; var kuu = 0;
+            preSELbton.forEach((itm) => {//統計
+                kou += document.getElementById(itm).innerText === "口" ? 1 : 0;
+                kuu += document.getElementById(itm).innerText === "ㄨ" ? 1 : 0;
+            });
+            //document.getElementById('ZZZZZZZ').innerText = JSON.stringify({ kuo: kou, kuu: kuu });
+            if (kou > kuu) {
+                preSELbton.forEach((itm) => {
+                    if (document.getElementById(itm).innerText === "ㄨ")
+                        document.getElementById(itm).click();
+                });
+            } else if (kou < kuu) {
+                preSELbton.forEach((itm) => {
+                    if (document.getElementById(itm).innerText === "口")
+                        document.getElementById(itm).click();
+                });
+            } else {
+                preSELbton.forEach((itm) => {
+                    if (document.getElementById(itm).innerText === "ㄨ")
+                        document.getElementById(itm).click();
+                });
+            }
+            if (kou === 5) {//all O
+                preSELbton.forEach((itm) => {
+                    if (document.getElementById(itm).innerText === "口")
+                        document.getElementById(itm).click();
+                });
+            }
+            if (kuu === 5) {//all x
+                preSELbton.forEach((itm) => {
+                    if (document.getElementById(itm).innerText === "ㄨ")
+                        document.getElementById(itm).click();
+                });
+            }
+        });
+    }
+}
+//<>周次批次</>
+var all_W_BT = document.getElementsByClassName('cloumnBash');
+for (let index = 0; index < all_W_BT.length; index++) {
+    const element = all_W_BT[index];
+    element.addEventListener('click', (e) => {
+        var allBTz = document.querySelectorAll('button');
+        var preSELbton = [];
+        for (let indexz = 0; indexz < allBTz.length; indexz++) {
+            const elementz = allBTz[indexz];
+            //-------------------------//
+            const regex = /[a-zA-Z]([0-9])([0-9])/gm;
+
+            // Alternative syntax using RegExp constructor
+            // const regex = new RegExp('[a-zA-Z]([0-9])([0-9])', 'gm')
+
+            const str = elementz.id;//`l12`;
+            let m;
+
+            while ((m = regex.exec(str)) !== null) {
+                // This is necessary to avoid infinite loops with zero-width matches
+                if (m.index === regex.lastIndex) {
+                    regex.lastIndex++;
+                }
+                // The result can be accessed through the `m`-variable.
+                m.forEach((match, groupIndex) => {
+                    console.log(`Found match, group ${groupIndex}: ${match}`);
+                    if (groupIndex === 1) {//周次
+                        var wnthis = -1;
+                        switch (e.target.innerText) {
+                            case '一':
+                                wnthis = 1;
+                                break;
+                            case '二':
+                                wnthis = 2;
+                                break;
+                            case '三':
+                                wnthis = 3;
+                                break;
+                            case '四':
+                                wnthis = 4;
+                                break;
+                            case '五':
+                                wnthis = 5;
+                                break;
+
+                            default:
+                                wnthis = 0;
+                                break;
+                        }
+
+                        if (Number(match) === wnthis)
+                            preSELbton.push(elementz.id);
+
+
+                    }
+                });
+            }
+            //-------------------------//
+        }
+        //document.getElementById('ZZZZZZZ').innerText = JSON.stringify(preSELbton);
+        var kou = 0; var kuu = 0;
+        preSELbton.forEach((itm) => {//統計
+            kou += document.getElementById(itm).innerText === "口" ? 1 : 0;
+            kuu += document.getElementById(itm).innerText === "ㄨ" ? 1 : 0;
+        });
+        //document.getElementById('ZZZZZZZ').innerText = JSON.stringify({ kuo: kou, kuu: kuu });
+        if (kou > kuu) {
+            preSELbton.forEach((itm) => {
+                if (document.getElementById(itm).innerText === "ㄨ")
+                    document.getElementById(itm).click();
+            });
+        } else if (kou < kuu) {
+            preSELbton.forEach((itm) => {
+                if (document.getElementById(itm).innerText === "口")
+                    document.getElementById(itm).click();
+            });
+        } else {
+            preSELbton.forEach((itm) => {
+                if (document.getElementById(itm).innerText === "ㄨ")
+                    document.getElementById(itm).click();
+            });
+        }
+        if (kou > 7) {//all O
+            preSELbton.forEach((itm) => {
+                if (document.getElementById(itm).innerText === "口")
+                    document.getElementById(itm).click();
+            });
+        }
+        if (kuu > 7) {//all x
+            preSELbton.forEach((itm) => {
+                if (document.getElementById(itm).innerText === "ㄨ")
+                    document.getElementById(itm).click();
+            });
+        }
+    });
+}
 
 injectTheScript();
 
 //==========
 //add.fcn
 //==========
-function SHOWudfF() { 
-    if (document.getElementById('SATudf').innerText === "ON") { 
+function SHOWudfF() {
+    if (document.getElementById('SATudf').innerText === "ON") {
         document.getElementById('SATudf').innerText = "OFF";
-        document.getElementById('sendSetLogic').innerText=document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("ud")+3,"0");
-    }else{
+        document.getElementById('sendSetLogic').innerText = document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("ud") + 3, "0");
+    } else {
         document.getElementById('SATudf').innerText = "ON";
-        document.getElementById('sendSetLogic').innerText=document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("ud")+3,"1");
+        document.getElementById('sendSetLogic').innerText = document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("ud") + 3, "1");
 
     }
 }
-function SHOWmidF() { 
-    if (document.getElementById('SATmid').innerText === "ON") { 
+function SHOWmidF() {
+    if (document.getElementById('SATmid').innerText === "ON") {
         document.getElementById('SATmid').innerText = "OFF";
-        document.getElementById('sendSetLogic').innerText=document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("md")+3,"0");
-    }else{
+        document.getElementById('sendSetLogic').innerText = document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("md") + 3, "0");
+    } else {
         document.getElementById('SATmid').innerText = "ON";
-        document.getElementById('sendSetLogic').innerText=document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("md")+3,"1");
+        document.getElementById('sendSetLogic').innerText = document.getElementById('sendSetLogic').innerText.replaceAt(document.getElementById('sendSetLogic').innerText.search("md") + 3, "1");
 
     }
 }
